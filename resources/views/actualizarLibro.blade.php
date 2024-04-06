@@ -1,10 +1,10 @@
 @extends('home')
 
-@section('title', 'Crear Libro')
+@section('title', 'Actualizar Libro')
 
 @section('content')
 
-<form action="{{ route('addLibro') }}" method="POST">
+<form action="{{ route('actualizarLibro') }}" method="POST">
     @csrf
     <label for="">Titulo</label>
     <input type="text" name="titulo">
@@ -17,7 +17,7 @@
     <label for="">Disponible</label>
     <input type="text" name="disponible">
 
-    <button type="submit">Guardar libro</button>
+    <button type="submit">Actualizar libro</button>
 
 </form>
 @endsection
