@@ -23,8 +23,10 @@ class PrestamosCRUDController extends Controller
     }
 
     public function addPrestamo(Request $request){
-        return Prestamos::guardarPrestamo($request->input('book_id'),$request->input('user_id'),
-        $request->input('fecha_prestamo'),'N',NULL);
+        if ($request->user_id != auth()->id()) {
+            return Prestamos::guardarPrestamo($request->input('book_id'),$request->input('user_id'),
+            $request->input('fecha_prestamo'),'N',NULL);
+        }
     }
 
     public function showPrestamos(){
@@ -37,8 +39,10 @@ class PrestamosCRUDController extends Controller
     }
 
     public function actualizarPrestamo(Request $request){
-        return Prestamos::actualizarPrestamo($request->input('id'),$request->input('titulo'),
-        $request->input('autor'),$request->input('anyo_publi'),$request->input('genero'),$request->input('disponible'));
+        if ($request->user_id != auth()->id()) {
+            return Prestamos::actualizarPrestamo($request->input('id'),$request->input('titulo'),
+            $request->input('autor'),$request->input('anyo_publi'),$request->input('genero'),$request->input('disponible'));
+        }
     }
 
 }
